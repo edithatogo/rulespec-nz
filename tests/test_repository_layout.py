@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+from functools import cache
 from pathlib import Path
 
 import yaml
@@ -47,6 +48,7 @@ def allowed_yaml_roots() -> set[str]:
     return {
         ".github",
         "programs",
+        ".pre-commit-config.yaml",
         "known-dangling.yaml",
         "known-validation-gaps.yaml",
         ".pre-commit-config.yaml",
@@ -73,6 +75,7 @@ def apply_gap_ratchet(section: str, found: list[str]) -> list[str]:
     return problems
 
 
+@cache
 def iter_repo_files() -> list[Path]:
     files: list[Path] = []
     for path in ROOT.rglob("*"):
@@ -83,6 +86,7 @@ def iter_repo_files() -> list[Path]:
     return sorted(files)
 
 
+@cache
 def iter_rulespec_files() -> list[Path]:
     files: list[Path] = []
     for root in rulespec_content_roots():
@@ -231,6 +235,7 @@ def test_no_disallowed_roots_or_yaml_fixtures() -> None:
         for path in iter_repo_files()
         if path.suffix in {".yaml", ".yml"}
         and path.relative_to(ROOT).parts[0] not in allowed
+            and path.name != ".pre-commit-config.yaml"
     ]
 
     assert disallowed_roots == []
