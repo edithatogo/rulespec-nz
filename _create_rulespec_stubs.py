@@ -1,6 +1,6 @@
 from pathlib import Path
 
-base = Path(__file__).resolve().parent
+base = Path(__file__).parent
 
 files = {}
 files["policies/common/demographics.yaml"] = """format: rulespec/v1

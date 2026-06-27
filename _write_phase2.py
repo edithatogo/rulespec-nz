@@ -200,8 +200,7 @@ obj = {
     },
 }
 
-ROOT = Path(__file__).resolve().parent
-path = ROOT / "data" / "coverage" / "openfisca-aotearoa-extraction-verification.json"
-with path.open("w", encoding="utf-8") as f:
+path = Path(__file__).parent / "data" / "coverage" / "openfisca-aotearoa-extraction-verification.json"
+with open(path, "w", encoding="utf-8") as f:
     json.dump(obj, f, indent=2)
 print(f"Written {path}")
