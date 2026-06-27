@@ -1,11 +1,9 @@
-import os
 from pathlib import Path
 
-base = Path(__file__).parent.resolve()
+base = Path(__file__).parent
 
 files = {}
-
-files['policies/common/demographics.yaml'] = """format: rulespec/v1
+files["policies/common/demographics.yaml"] = """format: rulespec/v1
 module:
   summary: |-
     Common demographic predicates used across NZ benefit and tax programs.
