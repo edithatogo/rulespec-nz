@@ -49,6 +49,7 @@ def allowed_yaml_roots() -> set[str]:
         "programs",
         "known-dangling.yaml",
         "known-validation-gaps.yaml",
+        ".pre-commit-config.yaml",
         *(d.name for d in jurisdiction_dirs()),
     }
 
