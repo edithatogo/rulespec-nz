@@ -101,7 +101,9 @@ obj = {
   }
 }
 
-path = r"C:\Users\60217257\OneDrive - Flinders\repos\legal-nz\rulespec-nz\data\coverage\openfisca-aotearoa-extraction-verification.json"
+from pathlib import Path
+
+path = Path(__file__).parent.resolve() / "data" / "coverage" / "openfisca-aotearoa-extraction-verification.json"
 with open(path, "w", encoding="utf-8") as f:
     json.dump(obj, f, indent=2)
 print(f"Written {path}")
