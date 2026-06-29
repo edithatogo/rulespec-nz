@@ -47,4 +47,20 @@
 
 - Interpretation questions: income interface with Track 23 shared income interfaces.
 - Missing official evidence: source citation paths pending.
-- Blockers: foundation gates #30, #31, #32; Track 23 income interfaces.
+- Blockers: foundation gates #30, #31, #32.
+
+## Current Implementation Slice
+
+- `nz/regulations/acc/earners_levy.yaml`
+- `nz/regulations/acc/earners_levy.test.yaml`
+- `nz/statutes/acc/weekly_compensation.yaml`
+- `nz/statutes/acc/weekly_compensation.test.yaml`
+
+## Companion Tests
+
+- Scenario families: employee, self-employed, low-income, maximum-liable-earnings, weekly compensation.
+- Expected outputs: liable earnings cap, standard levy outputs, self-employed minimum levy, weekly-compensation purchase levy, invoice exemption outputs, weekly compensation floors/caps, LOPE eligibility, and abatement outputs.
+- Edge cases: threshold crossings, GST-inclusive/exclusive rates, levy year transitions.
+- Historical/date-effective cases: required.
+- `nz/regulations/acc/earners_levy.yaml`
+- `nz/regulations/acc/earners_levy.test.yaml`

@@ -20,12 +20,19 @@
 
 ## Phase 3: RuleSpec Encoding
 
-- [ ] Fill earners' levy and liable-income gaps.
-- [ ] Add maximum liable earnings and self-employed parameters where missing.
-- [ ] Encode weekly compensation and loss-of-potential-earnings interfaces needed for tax-benefit modelling.
+- [x] Fill earners' levy and liable-income gaps.
+- [x] Add the capped liable-earnings helper for standard earners' levy.
+- [x] Add the low self-employed liable-earnings helper and reuse it in the minimum levy formula.
+- [x] Add the self-employed invoice levy exemption predicate and reuse it in the invoice payable rule.
+- [x] Add maximum liable earnings and self-employed parameters where missing.
+- [x] Encode weekly compensation gross-rate interfaces needed for tax-benefit modelling.
+- [x] Encode loss-of-potential-earnings interfaces needed for tax-benefit modelling.
+- [x] Add a payable weekly-compensation gate and payable gross amount for downstream consumers.
+- [x] Add weekly-compensation abatement and payable net amount for downstream consumers.
+- [x] Add date-effective weekly-compensation floor and cap fixtures for 2025 and 2026.
 
 ## Phase 4: Tests and Upstream Packaging
 
-- [ ] Add companion `.test.yaml` fixtures.
+- [x] Add companion `.test.yaml` fixtures.
 - [ ] Compare against pinned oracle/reference outputs as non-authoritative checks.
 - [ ] Prepare reviewable legal-content PR slices.

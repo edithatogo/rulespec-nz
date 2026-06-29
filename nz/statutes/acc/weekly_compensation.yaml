@@ -1,17 +1,168 @@
 format: rulespec/v1
 module:
   summary: |-
-    Accident Compensation Act 2001 and ACC weekly compensation guidelines
-    define the earnings-based weekly compensation for injured employees.
-    Official-source encoding pending for weekly earnings definitions,
-    abatement rates, and entitlement periods.
-  status: deferred
+    Accident Compensation Act 2001 and ACC weekly compensation guidance define
+    the gross weekly compensation rates used for injured employees and some
+    self-employed claimants. This module encodes the core gross weekly payment
+    bridge and the minimum and maximum payment limits used in ACC's annual
+    rate updates.
+  status: active
   source_verification:
     corpus_citation_paths:
       - nz/statute/act/public/2001/0049/part/2
+      - nz/statute/act/public/2001/0049/section/114
       - nz/agency/acc/weekly-compensation
     agency_reference_urls:
       - https://www.acc.co.nz/cover/weekly-compensation
+      - https://www.acc.co.nz/im-injured/financial-support/weekly-compensation/weekly-compensation-for-employees
+      - https://www.acc.co.nz/im-injured/financial-support/weekly-compensation/weekly-compensation-for-self-employed
+      - https://www.acc.co.nz/newsroom/stories/changes-to-client-payments-from-1-april-2025
+      - https://www.acc.co.nz/newsroom/stories/changes-to-client-payments-from-1-april-2026
+      - https://www.acc.co.nz/newsroom/stories/changes-to-acc-client-payments-from-1-july-2025
+      - https://www.acc.co.nz/newsroom/stories/changes-to-acc-client-payments-from-1-july-2026
     oracle_links:
       - openfisca-aotearoa
-rules: []
+units:
+  - name: NZD
+    kind: currency
+    minor_units: 2
+rules:
+  - name: acc_weekly_compensation_rate
+    kind: parameter
+    dtype: Rate
+    source: ACC weekly compensation guidance
+    versions:
+      - effective_from: '2025-04-01'
+        formula: |-
+          0.8
+  - name: acc_weekly_compensation_minimum_gross_weekly_amount
+    kind: parameter
+    dtype: Money
+    unit: NZD
+    source: ACC newsroom changes to client payments from 1 April 2025 and 1 April 2026
+    versions:
+      - effective_from: '2025-04-01'
+        formula: |-
+          752
+      - effective_from: '2026-04-01'
+        formula: |-
+          766.4
+  - name: acc_weekly_compensation_maximum_gross_weekly_amount
+    kind: parameter
+    dtype: Money
+    unit: NZD
+    source: ACC newsroom changes to client payments from 1 July 2025 and 1 July 2026
+    versions:
+      - effective_from: '2025-07-01'
+        formula: |-
+          2418.55
+      - effective_from: '2026-07-01'
+        formula: |-
+          2466.2
+  - name: acc_weekly_compensation_gross_weekly_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Week
+    unit: NZD
+    source: Accident Compensation Act 2001 part 2; ACC weekly compensation guidance and annual payment-rate updates
+    versions:
+      - effective_from: '2025-04-01'
+        formula: |-
+          min(
+              max(
+                  acc_pre_injury_weekly_earnings * acc_weekly_compensation_rate,
+                  acc_weekly_compensation_minimum_gross_weekly_amount
+              ),
+              acc_weekly_compensation_maximum_gross_weekly_amount
+          )
+  - name: acc_loss_of_potential_earnings_eligible
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Week
+    source: Accident Compensation Act 2001 Schedule 1 clause 47; ACC loss of potential earnings policy
+    versions:
+      - effective_from: '2025-04-01'
+        formula: |-
+          (
+              acc_incapable_of_work_due_to_injury
+              and acc_person_is_potential_earner
+              and acc_person_age_years >= 18
+              and not acc_person_in_full_time_study_or_training
+              and acc_person_weekly_earnings <= acc_weekly_compensation_minimum_gross_weekly_amount
+              and acc_inability_to_work_days >= 183
+          )
+  - name: acc_loss_of_potential_earnings_gross_weekly_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Week
+    unit: NZD
+    source: Accident Compensation Act 2001 Schedule 1 clause 47; ACC loss of potential earnings policy
+    versions:
+      - effective_from: '2025-04-01'
+        formula: |-
+          if acc_loss_of_potential_earnings_eligible:
+              acc_weekly_compensation_gross_weekly_amount
+          else:
+              0
+  - name: acc_weekly_compensation_payable
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Week
+    source: Accident Compensation Act 2001 part 2; ACC weekly compensation guidance
+    versions:
+      - effective_from: '2025-04-01'
+        formula: |-
+          (
+              acc_incapable_of_work_due_to_injury
+              and acc_pre_injury_weekly_earnings > 0
+          )
+  - name: acc_weekly_compensation_payable_gross_weekly_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Week
+    unit: NZD
+    source: Accident Compensation Act 2001 part 2; ACC weekly compensation guidance
+    versions:
+      - effective_from: '2025-04-01'
+        formula: |-
+          if acc_weekly_compensation_payable:
+              acc_weekly_compensation_gross_weekly_amount
+          else:
+              0
+  - name: acc_weekly_compensation_abatement_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Week
+    unit: NZD
+    source: ACC weekly compensation guidance; weekly compensation and other financial support guide
+    versions:
+      - effective_from: '2025-04-01'
+        formula: |-
+          if acc_weekly_compensation_payable:
+              min(
+                  acc_weekly_compensation_payable_gross_weekly_amount,
+                  max(0, acc_post_injury_weekly_earnings)
+              )
+          else:
+              0
+  - name: acc_weekly_compensation_payable_net_weekly_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Week
+    unit: NZD
+    source: ACC weekly compensation guidance; weekly compensation and other financial support guide
+    versions:
+      - effective_from: '2025-04-01'
+        formula: |-
+          max(
+              0,
+              acc_weekly_compensation_payable_gross_weekly_amount
+              - acc_weekly_compensation_abatement_amount
+          )

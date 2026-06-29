@@ -1,10 +1,170 @@
-# Deferred module - companion test placeholder.
-# Official-source encoding of ACC weekly compensation rules is pending.
-# See extraction track: acc-weekly-compensation-official-source-extraction
-- name: deferred_placeholder
+- name: weekly_compensation_standard_80_percent_rate
   period:
-    period_kind: tax_year
+    period_kind: custom
+    name: calendar_week
     start: '2026-04-01'
-    end: '2027-03-31'
-  input: {}
-  output: {}
+    end: '2026-04-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_pre_injury_weekly_earnings: 1000
+  output:
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_rate: 0.8
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_minimum_gross_weekly_amount: 766.4
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_gross_weekly_amount: 800
+
+- name: weekly_compensation_minimum_applies_from_2025_04_01
+  period:
+    period_kind: custom
+    name: calendar_week
+    start: '2025-04-01'
+    end: '2025-04-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_pre_injury_weekly_earnings: 700
+  output:
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_minimum_gross_weekly_amount: 752
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_gross_weekly_amount: 752
+
+- name: weekly_compensation_minimum_applies_to_low_earnings
+  period:
+    period_kind: custom
+    name: calendar_week
+    start: '2026-04-01'
+    end: '2026-04-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_pre_injury_weekly_earnings: 700
+  output:
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_gross_weekly_amount: 766.4
+
+- name: weekly_compensation_maximum_applies_from_2026_07_01
+  period:
+    period_kind: custom
+    name: calendar_week
+    start: '2026-07-01'
+    end: '2026-07-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_pre_injury_weekly_earnings: 4000
+  output:
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_maximum_gross_weekly_amount: 2466.2
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_gross_weekly_amount: 2466.2
+
+- name: weekly_compensation_maximum_applies_from_2025_07_01
+  period:
+    period_kind: custom
+    name: calendar_week
+    start: '2025-07-01'
+    end: '2025-07-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_pre_injury_weekly_earnings: 4000
+  output:
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_maximum_gross_weekly_amount: 2418.55
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_gross_weekly_amount: 2418.55
+
+- name: lope_eligible_receives_minimum_rate
+  period:
+    period_kind: custom
+    name: calendar_week
+    start: '2026-04-01'
+    end: '2026-04-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_incapable_of_work_due_to_injury: true
+    nz:statutes/acc/weekly_compensation#input.acc_person_is_potential_earner: true
+    nz:statutes/acc/weekly_compensation#input.acc_person_age_years: 18
+    nz:statutes/acc/weekly_compensation#input.acc_person_in_full_time_study_or_training: false
+    nz:statutes/acc/weekly_compensation#input.acc_person_weekly_earnings: 0
+    nz:statutes/acc/weekly_compensation#input.acc_inability_to_work_days: 183
+    nz:statutes/acc/weekly_compensation#input.acc_pre_injury_weekly_earnings: 0
+  output:
+    nz:statutes/acc/weekly_compensation#acc_loss_of_potential_earnings_eligible: holds
+    nz:statutes/acc/weekly_compensation#acc_loss_of_potential_earnings_gross_weekly_amount: 766.4
+
+- name: lope_eligible_receives_capped_rate
+  period:
+    period_kind: custom
+    name: calendar_week
+    start: '2026-07-01'
+    end: '2026-07-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_incapable_of_work_due_to_injury: true
+    nz:statutes/acc/weekly_compensation#input.acc_person_is_potential_earner: true
+    nz:statutes/acc/weekly_compensation#input.acc_person_age_years: 18
+    nz:statutes/acc/weekly_compensation#input.acc_person_in_full_time_study_or_training: false
+    nz:statutes/acc/weekly_compensation#input.acc_person_weekly_earnings: 5000
+    nz:statutes/acc/weekly_compensation#input.acc_inability_to_work_days: 183
+    nz:statutes/acc/weekly_compensation#input.acc_pre_injury_weekly_earnings: 5000
+  output:
+    nz:statutes/acc/weekly_compensation#acc_loss_of_potential_earnings_eligible: holds
+    nz:statutes/acc/weekly_compensation#acc_loss_of_potential_earnings_gross_weekly_amount: 2466.2
+
+- name: lope_not_eligible_when_under_six_months
+  period:
+    period_kind: custom
+    name: calendar_week
+    start: '2026-04-01'
+    end: '2026-04-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_incapable_of_work_due_to_injury: true
+    nz:statutes/acc/weekly_compensation#input.acc_person_is_potential_earner: true
+    nz:statutes/acc/weekly_compensation#input.acc_person_age_years: 18
+    nz:statutes/acc/weekly_compensation#input.acc_person_in_full_time_study_or_training: false
+    nz:statutes/acc/weekly_compensation#input.acc_person_weekly_earnings: 0
+    nz:statutes/acc/weekly_compensation#input.acc_inability_to_work_days: 150
+  output:
+    nz:statutes/acc/weekly_compensation#acc_loss_of_potential_earnings_eligible: not_holds
+    nz:statutes/acc/weekly_compensation#acc_loss_of_potential_earnings_gross_weekly_amount: 0
+
+- name: weekly_compensation_payable_gross_amount_when_injured
+  period:
+    period_kind: custom
+    name: calendar_week
+    start: '2026-04-01'
+    end: '2026-04-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_incapable_of_work_due_to_injury: true
+    nz:statutes/acc/weekly_compensation#input.acc_pre_injury_weekly_earnings: 1000
+  output:
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_payable: holds
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_payable_gross_weekly_amount: 800
+
+- name: weekly_compensation_not_payable_without_pre_injury_earnings
+  period:
+    period_kind: custom
+    name: calendar_week
+    start: '2026-04-01'
+    end: '2026-04-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_incapable_of_work_due_to_injury: true
+    nz:statutes/acc/weekly_compensation#input.acc_pre_injury_weekly_earnings: 0
+  output:
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_payable: not_holds
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_payable_gross_weekly_amount: 0
+
+- name: weekly_compensation_abatement_caps_total_income_at_pre_injury_income
+  period:
+    period_kind: custom
+    name: calendar_week
+    start: '2026-04-01'
+    end: '2026-04-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_incapable_of_work_due_to_injury: true
+    nz:statutes/acc/weekly_compensation#input.acc_pre_injury_weekly_earnings: 1000
+    nz:statutes/acc/weekly_compensation#input.acc_post_injury_weekly_earnings: 250
+  output:
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_payable: holds
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_payable_gross_weekly_amount: 800
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_abatement_amount: 250
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_payable_net_weekly_amount: 550
+
+- name: weekly_compensation_fully_abated_when_earnings_exceed_gross_amount
+  period:
+    period_kind: custom
+    name: calendar_week
+    start: '2026-04-01'
+    end: '2026-04-07'
+  input:
+    nz:statutes/acc/weekly_compensation#input.acc_incapable_of_work_due_to_injury: true
+    nz:statutes/acc/weekly_compensation#input.acc_pre_injury_weekly_earnings: 1000
+    nz:statutes/acc/weekly_compensation#input.acc_post_injury_weekly_earnings: 900
+  output:
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_payable: holds
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_payable_gross_weekly_amount: 800
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_abatement_amount: 800
+    nz:statutes/acc/weekly_compensation#acc_weekly_compensation_payable_net_weekly_amount: 0
