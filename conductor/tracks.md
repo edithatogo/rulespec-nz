@@ -7,15 +7,15 @@ This file tracks all major tracks for the project. Each track has its own detail
 ## Active Tracks
 
 ## Track 23: Income Interfaces
-*Status: planned before Track 24 and foundation gates*
+*Status: packaged review-ready shared-income track; depends on foundation gates and precedes Track 24*
 *Link: [./tracks/23_income_interfaces/](./tracks/23_income_interfaces/)*
 
 ## Track 24: ACC Levies and Income Support Surfaces
-*Status: planned after Track 23 and foundation gates*
+*Status: packaged review-ready ACC slice; depends on Track 23 and foundation gates*
 *Link: [./tracks/24_acc_levies_income_supports/](./tracks/24_acc_levies_income_supports/)*
 
 ## Track 25: Social Security Act main benefits and income tests
-*Status: active main-benefits track; depends on Track 24, upstream gates #31/#32, and NLP pipeline ingestion*
+*Status: packaged review-ready main-benefits track; depends on Track 24 and upstream gates #31/#32, with NLP ingestion optional*
 *Link: [./tracks/25_social_security_main_benefits/](./tracks/25_social_security_main_benefits/)*
 
 ## Planned Next Legislation Tracks

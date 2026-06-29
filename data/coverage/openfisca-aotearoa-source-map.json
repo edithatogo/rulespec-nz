@@ -51,10 +51,9 @@
       "implementation_status": "partial_existing_reconcile",
       "official_sources": ["Accident Compensation Act 2001", "Accident Compensation earners levy regulations", "ACC levy and compensation guidance"],
       "openfisca_paths": ["openfisca_aotearoa/variables/acts/acc/", "openfisca_aotearoa/parameters/acc/", "openfisca_aotearoa/tests/acc/"],
-      "existing_rulespec_paths": ["nz/regulations/acc/earners_levy.yaml"],
-      "companion_tests": ["nz/regulations/acc/earners_levy.test.yaml"],
-      "planned_rulespec_paths": ["nz/statutes/acc/weekly_compensation.yaml"],
-      "oracle_use": "earners levy comparison fixtures; weekly compensation requires official-source extraction"
+      "existing_rulespec_paths": ["nz/regulations/acc/earners_levy.yaml", "nz/statutes/acc/weekly_compensation.yaml"],
+      "companion_tests": ["nz/regulations/acc/earners_levy.test.yaml", "nz/statutes/acc/weekly_compensation.test.yaml"],
+      "oracle_use": "earners levy and weekly compensation comparison fixtures after official-source extraction"
     },
     {
       "id": "student-allowance",

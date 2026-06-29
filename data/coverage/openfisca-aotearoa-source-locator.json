@@ -144,7 +144,7 @@
     {
       "surface_id": "acc-and-weekly-compensation",
       "surface_name": "ACC Weekly Compensation",
-      "status": "deferred_to_official_source_extraction",
+      "status": "implemented_existing_official_source_partial_oracle_reconcile",
       "official_sources": [
         "Accident Compensation Act 2001",
         "ACC weekly compensation and entitlement guidance",

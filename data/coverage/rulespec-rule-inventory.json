@@ -4011,7 +4011,18 @@
                 "policyengine-nz"
             ],
             "triangulation_status": "inventory_seeded",
-            "rules": []
+            "rules": [
+                "acc_weekly_compensation_rate",
+                "acc_weekly_compensation_minimum_gross_weekly_amount",
+                "acc_weekly_compensation_maximum_gross_weekly_amount",
+                "acc_weekly_compensation_gross_weekly_amount",
+                "acc_loss_of_potential_earnings_eligible",
+                "acc_loss_of_potential_earnings_gross_weekly_amount",
+                "acc_weekly_compensation_payable",
+                "acc_weekly_compensation_payable_gross_weekly_amount",
+                "acc_weekly_compensation_abatement_amount",
+                "acc_weekly_compensation_payable_net_weekly_amount"
+            ]
         },
         {
             "path": "nz/statutes/housing_restructuring/income_related_rent.yaml",

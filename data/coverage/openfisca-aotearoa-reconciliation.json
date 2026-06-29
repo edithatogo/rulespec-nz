@@ -56,9 +56,9 @@
     {
       "id": "acc-and-weekly-compensation",
       "closeout_status": "implemented_existing_official_source_partial_oracle_reconcile",
-      "rulespec_paths": ["nz/regulations/acc/earners_levy.yaml"],
-      "companion_tests": ["nz/regulations/acc/earners_levy.test.yaml"],
-      "remaining_action": "Weekly compensation requires Accident Compensation Act extraction before canonical encoding."
+      "rulespec_paths": ["nz/regulations/acc/earners_levy.yaml", "nz/statutes/acc/weekly_compensation.yaml"],
+      "companion_tests": ["nz/regulations/acc/earners_levy.test.yaml", "nz/statutes/acc/weekly_compensation.test.yaml"],
+      "remaining_action": "Weekly compensation comparison fixtures can now be reconciled against pinned oracle or agency snapshots."
     },
     {
       "id": "student-allowance",
