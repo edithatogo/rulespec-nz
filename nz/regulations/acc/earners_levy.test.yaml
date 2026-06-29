@@ -10,6 +10,7 @@
     nz:regulations/acc/earners_levy#acc_earners_levy_rate_including_gst: 0.0175
     nz:regulations/acc/earners_levy#acc_earners_levy_maximum_earnings: 156641
     nz:regulations/acc/earners_levy#acc_levy_cents_rounding_scale: 100
+    nz:regulations/acc/earners_levy#acc_liable_earnings_for_earners_levy: 100000
     nz:regulations/acc/earners_levy#acc_standard_earners_levy_excluding_gst: 1520
     nz:regulations/acc/earners_levy#acc_standard_earners_levy_including_gst: 1750
 
@@ -21,6 +22,7 @@
   input:
     nz:regulations/acc/earners_levy#input.acc_earnings_for_earners_levy: 200000
   output:
+    nz:regulations/acc/earners_levy#acc_liable_earnings_for_earners_levy: 156641
     nz:regulations/acc/earners_levy#acc_standard_earners_levy_excluding_gst: 2380.9432
     nz:regulations/acc/earners_levy#acc_standard_earners_levy_including_gst: 2741.22
 
@@ -32,6 +34,7 @@
   input:
     nz:regulations/acc/earners_levy#input.acc_earnings_for_earners_levy: -100
   output:
+    nz:regulations/acc/earners_levy#acc_liable_earnings_for_earners_levy: 0
     nz:regulations/acc/earners_levy#acc_standard_earners_levy_excluding_gst: 0
     nz:regulations/acc/earners_levy#acc_standard_earners_levy_including_gst: 0
 
@@ -46,6 +49,7 @@
     nz:regulations/acc/earners_levy#input.acc_employee_earnings_for_low_self_employed_formula: 10000
   output:
     nz:regulations/acc/earners_levy#acc_low_self_employed_minimum_earnings: 50501
+    nz:regulations/acc/earners_levy#acc_low_self_employed_liable_earnings_for_earners_levy: 40501
     nz:regulations/acc/earners_levy#acc_low_self_employed_minimum_levy_excluding_gst: 615.6152
 
 - name: low_self_employed_threshold_not_met
@@ -58,6 +62,7 @@
     nz:regulations/acc/earners_levy#input.acc_self_employed_earnings_for_earners_levy: 60000
     nz:regulations/acc/earners_levy#input.acc_employee_earnings_for_low_self_employed_formula: 0
   output:
+    nz:regulations/acc/earners_levy#acc_low_self_employed_liable_earnings_for_earners_levy: 0
     nz:regulations/acc/earners_levy#acc_low_self_employed_minimum_levy_excluding_gst: 0
 
 - name: weekly_compensation_purchase_2026
@@ -95,6 +100,7 @@
     nz:regulations/acc/earners_levy#input.acc_self_employed_invoice_acc_levy_amount: 40
   output:
     nz:regulations/acc/earners_levy#acc_self_employed_invoice_exempt_amount: 40
+    nz:regulations/acc/earners_levy#acc_self_employed_invoice_levy_exemption_applies: holds
     nz:regulations/acc/earners_levy#acc_self_employed_invoice_levy_payable_after_exempt_amount: 0
 
 - name: self_employed_invoice_exempt_amount_exceeded
@@ -108,4 +114,5 @@
     nz:regulations/acc/earners_levy#input.acc_invoice_includes_earners_levy: true
     nz:regulations/acc/earners_levy#input.acc_self_employed_invoice_acc_levy_amount: 40.01
   output:
+    nz:regulations/acc/earners_levy#acc_self_employed_invoice_levy_exemption_applies: not_holds
     nz:regulations/acc/earners_levy#acc_self_employed_invoice_levy_payable_after_exempt_amount: 40.01
