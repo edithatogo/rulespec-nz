@@ -21,6 +21,7 @@
 
 - [x] Encode the shared income-base definitions and bridge surfaces.
 - [x] Add period conversion helpers where downstream tracks need them.
+- [x] Add the missing daily annual bridge for downstream consumers.
 - [x] Add loss carry-over primitives where downstream tracks need them.
 - [x] Add the shared activity-income bridge for business/self-employment inputs.
 - [x] Add the shared employment-income bridge for salary and wage inputs.
