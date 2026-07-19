@@ -173,10 +173,10 @@ def _load_json_object_line(line: str) -> dict[str, object]:
 
 def test_legacy_tax_rate_ingest_track_is_archived_as_track3_context() -> None:
     track3 = _load_json_object(
-        ROOT / "conductor/tracks/archive/03_income_tax_rates/metadata.json",
+        ROOT / "conductor/legacy-archive/03_income_tax_rates/metadata.json",
     )
     legacy = _load_json_object(
-        ROOT / "conductor/tracks/archive/nz_ingest_tax_rate_20260619/metadata.json",
+        ROOT / "conductor/legacy-archive/nz_ingest_tax_rate_20260619/metadata.json",
     )
     tracks_index = (ROOT / "conductor/tracks.md").read_text(encoding="utf-8")
 
@@ -193,4 +193,4 @@ def test_legacy_tax_rate_ingest_track_is_archived_as_track3_context() -> None:
     assert "nz_ingest_tax_rate_20260619" in superseded_ids
     assert "conductor/tracks/archive/nz_ingest_tax_rate_20260619/" in superseded_paths
     assert not (ROOT / "conductor/tracks/nz_ingest_tax_rate_20260619").exists()
-    assert "conductor/tracks/archive/nz_ingest_tax_rate_20260619/" in tracks_index
+    assert "conductor/legacy-archive/nz_ingest_tax_rate_20260619/" in tracks_index

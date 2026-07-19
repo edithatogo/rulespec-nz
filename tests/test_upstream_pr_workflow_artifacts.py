@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW_ROOT = ROOT / "conductor" / "workflows" / "upstream-pr"
 AGENT_ROOT = ROOT / ".agents" / "upstream-pr"
 SKILL_PATH = ROOT / ".codex" / "skills" / "upstream-pr-workflow" / "SKILL.md"
-TRACK_ROOT = ROOT / "conductor" / "tracks" / "archive" / "11_upstream_pr_workflows"
+TRACK_ROOT = ROOT / "conductor" / "legacy-archive" / "11_upstream_pr_workflows"
 WORKFLOW_MANIFEST = WORKFLOW_ROOT / "workflow.json"
 
 
@@ -111,4 +111,4 @@ def test_track_11_is_removed_from_active_index() -> None:
     tracks = (ROOT / "conductor" / "tracks.md").read_text(encoding="utf-8")
     active, archived = tracks.split("## Archived Tracks", maxsplit=1)
     assert "Track 11" not in active
-    assert "conductor/tracks/archive/11_upstream_pr_workflows" in archived
+    assert "conductor/legacy-archive/11_upstream_pr_workflows" in archived
