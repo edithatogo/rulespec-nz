@@ -1,7 +1,7 @@
 {
   "track_id": "issue_47_kiwisaver_no_pr_disposition_20260719",
   "title": "Issue 47 KiwiSaver no-PR disposition",
-  "status": "completed",
+  "status": "archived",
   "type": "chore",
   "description": "Retrospective evidence record for issue 47's explicit no-PR disposition.",
   "created_at": "2026-07-19T04:03:57Z",
@@ -15,5 +15,5 @@
   "current_module_blob": "5107c7d637a1936f1a44ba237309c74896905689",
   "pull_request_disposition": "no_pr_required",
   "disposition_reason": "The superseding commit is in current main history and independently incorporated and extended the historical proposal; the proposal commit is not an ancestor of current main.",
-  "limitation": "Reusable validation currently fails with ValidationWaiverRatchetSchema: validate_failures must be a mapping; this is unrelated to the former KiwiSaver parameter_set sequence shape."
+  "limitation": "This retrospective controlled-fork disposition is governance evidence, not independent implementation validation."
 }
