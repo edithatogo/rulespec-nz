@@ -1,0 +1,19 @@
+{
+  "track_id": "issue_47_kiwisaver_no_pr_disposition_20260719",
+  "title": "Issue 47 KiwiSaver no-PR disposition",
+  "status": "archived",
+  "type": "chore",
+  "description": "Retrospective evidence record for issue 47's explicit no-PR disposition.",
+  "created_at": "2026-07-19T04:03:57Z",
+  "updated_at": "2026-07-19T04:03:58Z",
+  "evidence_schema": "1.0",
+  "repository": "edithatogo/rulespec-nz",
+  "issue": "https://github.com/edithatogo/rulespec-nz/issues/47",
+  "audited_main_commit": "a206fc9fd87d74dcbd2f61e4d7727a7b2b4132de",
+  "superseding_commit": "5e67c161a9a00a6d2b45b09fddb3b9371974bf6d",
+  "historical_proposal_commit": "ecdc2e30d9c6bff6a4e8ed52d4395d79cd3c88da",
+  "current_module_blob": "5107c7d637a1936f1a44ba237309c74896905689",
+  "pull_request_disposition": "no_pr_required",
+  "disposition_reason": "The superseding commit is in current main history and independently incorporated and extended the historical proposal; the proposal commit is not an ancestor of current main.",
+  "limitation": "This retrospective controlled-fork disposition is governance evidence, not independent implementation validation."
+}

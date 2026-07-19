@@ -161,3 +161,7 @@ No active tracks.
 ## Track 12: nztaxmicrosim Rule Incorporation
 *Status: archived after review remediation*
 *Link: [./conductor/tracks/archive/12_nztaxmicrosim_rule_incorporation/](./conductor/tracks/archive/12_nztaxmicrosim_rule_incorporation/)*
+
+## Track: Issue 47 KiwiSaver no-PR disposition
+*Status: archived after retrospective governance review*
+*Link: [./conductor/tracks/archive/issue_47_kiwisaver_no_pr_disposition_20260719/](./conductor/tracks/archive/issue_47_kiwisaver_no_pr_disposition_20260719/)*

@@ -77,6 +77,24 @@ Before marking any task complete, verify:
 - [ ] Code complies with Pydantic v2 schemas and Pydantic AI agent designs where applicable.
 - [ ] Implementation notes and Git Notes attached.
 
+For documentation-only governance tracks, the required local gates are the
+Conductor setup/full validators, JSON and JSONL parsing, the focused Conductor
+registry tests, and repository formatting/lint checks applicable to changed
+files. Code coverage, mutation testing, and profiling apply only when executable
+code changes.
+
+## Version Control and External Gates
+
+- Use a clean branch based on the fork's current `main`.
+- Commit completed governance tracks as one focused change.
+- Push, pull-request creation, hosted checks, merge, issue updates, and project
+  membership are separately verified actions.
+- Never modify `TheAxiomFoundation/rulespec-nz` from this repository workflow.
+- A retrospective `no_pr_required` disposition must not be represented as a
+  historical pull request association. A later governance-only PR may carry the
+  retrospective record, but it does not become the implementation PR for the
+  disposed issue.
+
 ## Development & CI Commands
 
 ### Setup & Environment
