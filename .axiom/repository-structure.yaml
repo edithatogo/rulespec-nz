@@ -55,6 +55,7 @@ path_rules:
       - ".codex/**"
     allow_extensions:
       - ".json"
+      - ".jsonl"
       - ".md"
       - ".toml"
   - patterns:
