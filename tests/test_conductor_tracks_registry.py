@@ -10,7 +10,8 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 TRACKS_PATH = ROOT / "conductor" / "tracks.md"
 TRACKS_DIR = ROOT / "conductor" / "tracks"
-ARCHIVE_DIR = TRACKS_DIR / "archive"
+ARCHIVE_DIR = ROOT / "conductor" / "archive"
+LEGACY_ARCHIVE_DIR = ROOT / "conductor" / "legacy-archive"
 
 TRACK_ENTRY_RE = re.compile(
     r"^## (?P<title>Track .+?|Legacy Track:.+?)\n"
@@ -56,7 +57,7 @@ def test_archived_track_registry_entries_point_to_archive() -> None:
         status = entry.group("status").lower()
         href = entry.group("href")
         if "archived" in status:
-            assert "/archive/" in href, (
+            assert "/archive/" in href or "/legacy-archive/" in href, (
                 f"Archived track link is outside archive: {href}"
             )
 
@@ -75,9 +76,13 @@ def test_no_completed_track_folders_remain_outside_archive() -> None:
 @pytest.mark.unit
 def test_archived_track_metadata_matches_folder_ids() -> None:
     for metadata_path in sorted(ARCHIVE_DIR.glob("*/metadata.json")):
-        metadata = json.loads(metadata_path.read_text(encoding="utf-8-sig"))
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
         folder_id = metadata_path.parent.name
-        if folder_id.startswith("nz_ingest_"):
-            continue
         assert metadata["track_id"] == folder_id
-        assert "archived" in metadata["status"].lower()
+        assert metadata["status"] in {"completed", "cancelled"}
+
+
+@pytest.mark.unit
+def test_legacy_archive_is_preserved_outside_standards_track_roots() -> None:
+    assert LEGACY_ARCHIVE_DIR.is_dir()
+    assert not (TRACKS_DIR / "archive").exists()
