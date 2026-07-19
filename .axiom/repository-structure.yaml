@@ -69,6 +69,7 @@ path_rules:
       - "conductor/**"
     allow_extensions:
       - ".json"
+      - ".jsonl"
       - ".md"
   - patterns:
       - "data/**"
