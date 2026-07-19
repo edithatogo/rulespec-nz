@@ -10,7 +10,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 INVENTORY_PATH = ROOT / "data" / "oracles" / "nztaxmicrosim-rule-inventory.json"
 TRACK_ROOT = (
-    ROOT / "conductor" / "legacy-archive" / "12_nztaxmicrosim_rule_incorporation"
+    ROOT / "conductor" / "tracks" / "archive" / "12_nztaxmicrosim_rule_incorporation"
 )
 
 

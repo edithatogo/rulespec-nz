@@ -11,7 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE_EVIDENCE_PATH = (
     ROOT
     / "conductor"
-    / "legacy-archive"
+    / "tracks"
+    / "archive"
     / "37_oracle_comparison_and_historical_rule_reconciliation"
     / "source-evidence.md"
 )

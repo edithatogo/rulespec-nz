@@ -10,7 +10,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 INVENTORY_PATH = ROOT / "data" / "oracles" / "policyengine-nz-rule-inventory.json"
 TRACK_ROOT = (
-    ROOT / "conductor" / "legacy-archive" / "14_policyengine_nz_rule_incorporation"
+    ROOT / "conductor" / "tracks" / "archive" / "14_policyengine_nz_rule_incorporation"
 )
 
 
