@@ -1,0 +1,1 @@
+Restores the repository's established conductor/tracks/archive path after hosted validation exposed path-contract regressions. Full repository pytest: 280 passed, 1 skipped. The generic Conductor setup validator passes; its full mode is incompatible with this repository's established legacy archive layout and was not used to rewrite historical tracks.
