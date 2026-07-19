@@ -1,0 +1,1 @@
+Allows the standard evidence.jsonl artifact under conductor paths. The hosted reusable validator previously rejected only this extension after all 280 tests passed.
