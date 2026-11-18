@@ -165,3 +165,9 @@ No active tracks.
 ## Track: Issue 47 KiwiSaver no-PR disposition
 *Status: archived after retrospective governance review*
 *Link: [./conductor/tracks/archive/issue_47_kiwisaver_no_pr_disposition_20260719/](./conductor/tracks/archive/issue_47_kiwisaver_no_pr_disposition_20260719/)*
+
+---
+
+## [ ] Serde/YAML dependency disposition in the Rust extension (18 November 2026)
+
+[Specification, plan and conditional no-go](./tracks/serde_yaml_dependency_no_go_20261118/index.md). Qualified removal of apparently unused direct Serde/YAML dependencies is preferred over a new YAML parser; exact-head feature/ABI checks and original RuleSpec law/source governance remain pending.
