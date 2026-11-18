@@ -1,0 +1,17 @@
+{
+  "track_id": "serde_yaml_dependency_no_go_20261118",
+  "type": "maintenance",
+  "status": "new",
+  "created_at": "2026-11-18T00:00:00Z",
+  "updated_at": "2026-11-18T00:00:00Z",
+  "description": "Evidence-gated removal of apparently unused serde and deprecated serde_yaml from the Rust extension; evaluate maintained YAML only if a real consumer exists",
+  "verification": {
+    "status": "not_run",
+    "commands": []
+  },
+  "capability_status": "planned",
+  "dependencies": [],
+  "owners": [
+    "edithatogo"
+  ]
+}
